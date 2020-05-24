@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	
+	<category>
+	    <pattern>DO YOU LoVE ME</pattern>
+	    <template>Sure sweetie. i love you sososo much</template>
+    </category>
+    
+    <category>
+        <pattern>TELL ME SOMETHING ABOUT *</pattern>
+        <template>
+            first= <first><star/></first><break/>
+            rest= <rest><star/></rest>
+        </template>
+    </category>
+</aiml>

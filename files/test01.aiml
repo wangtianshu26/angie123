@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<category>
+	    <pattern>
+	        MY NAME IS *
+	    </pattern>
+	    <template>
+	        Hi,<set name="username"><star /></set>
+	    </template>
+	</category>
+	
+	<!--隐藏变量-->
+	
+	<category>
+	    <pattern>
+	        我的名字是 *
+	    </pattern>
+	    <template>
+	        你好,<think><set name="username"><star /></set></think>
+	    </template>
+	</category>
+	
+	<category>
+	    <pattern>
+	        我叫什么
+	    </pattern>
+	    <template>
+	        你的名字是<get name="username" />
+	    </template>
+	</category>
+	
+	<category>
+	    <pattern>* TALK ABOUT CAT </pattern>
+	    <template>
+	        sure
+	    </template>
+	</category>
+	
+	<category>
+	    <pattern>_ color _ like_</pattern>
+	    <template>
+	        are you talking about color?
+	    </template>
+	</category>
+	
+	<category>
+	    <pattern>MY NAME IS * *</pattern>
+	    <template>
+	        Hi, <star index="1"/>
+	    </template>
+	    
+    </category>
+    
+
+    
+    <category>
+        <pattern>
+            i just ate _
+        </pattern>
+        <template>
+            that sounds delicious! <think><set name="food"><star/></set></think>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>
+            WHAT IS YOUR AGE
+        </pattern>
+        <template>
+            i am <bot name="age"></bot> years old.
+        </template>
+    </category>
+    
+    <category>
+        <pattern>IS * A DAY OF THE WEEK</pattern>
+        <template>
+            <think><set name="testday"><star/></set></think>
+            <condition>
+                <li value="Monday">Yes,<star/> is a day of the week. you are clever</li>
+                <li value="Tuesday">Yes</li>
+                <li value="Wednesday">Yes</li>
+                <li value="Thursday">Yes</li>
+                <li value="Friday">Yes</li>
+                <li value="Saturday">Yes</li>
+                <li value="Sunday">Yes</li>
+            </condition>
+        </template>
+    </category>
+	
+	<category>
+	    <pattern>MY NAME IS *</pattern>
+	    <template>
+	        Hi,<set name="testname"><star/>. </set> 
+	        <condition name="testname">
+	            <li value="Steve"> You have the same name as my creator</li>
+	            <li>nice name!</li>
+	        </condition>
+	    </template>
+    </category>
+    
+    <category>
+        <pattern>WHAT IS MY NAME</pattern>
+        <template>
+            <condition name="testname">
+                <li value="unknown">no idea, you haven't tole me yet.</li>
+                <li>your name is <get name="testname"></get>. <srai>my name is <get name="testname"></get></srai></li>
+            </condition>
+        </template>
+    </category>
+    
+    
+    <category>
+        <pattern>I LIKE *</pattern>
+        <template>
+            <think><set name="it"><star/></set></think>
+            what do you like most about it?
+        </template>
+    </category>
+    
+    <category>
+        <pattern>DO YOU LIKE IT</pattern>
+        <template>
+            <condition name="it">
+                <li value="unknown">do i like what</li>
+                <li><srai>do you like <get name="it"></get></srai></li>
+            </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>DO YOU LIKE PIZZA</pattern>
+        <template>Yes, pizza is my favorite</template>
+    </category>
+	
+	<category>
+        <pattern>DO YOU LIKE ICE CREAM</pattern>
+        <template>Yes, ice cream is my second favorite</template>
+    </category>
+    <category>
+        <pattern>DO YOU LIKE banana</pattern>
+        <template>Yes, banana is my third favorite</template>
+    </category>
+	
+	<category>
+	    <that>DO I LIKE WHAT</that>
+	    <pattern>*</pattern>
+	    <template>
+	        <think><set name="it"><star/></set></think>
+	        <srai>do you like it</srai>
+	    </template>
+    </category>
+	
+	
+	
+	<!--topic-->
+	<category>
+	    <pattern>SHALL WE TALK ABOUT *</pattern>
+	    <template>
+	        <think><set name="topic"><star/></set></think>
+	        Sure! Sounds like a good a topic.
+	    </template>
+    </category>
+    
+    <topic name="COUNTRIES">
+        <category>
+            <pattern>*</pattern>
+            <template>
+                <random>
+                    <li>Have you been abroad?</li>
+                    <li>Which country do you like best?</li>
+                </random>
+            </template>
+        </category>
+        
+        <category>
+            <pattern>WHAT IS YOUR FAVORITE</pattern>
+            <template>
+                My favorite country is China.
+            </template>
+        </category>
+    </topic>
+    
+    <topic name="BOOKS">
+        <category>
+            <pattern>*</pattern>
+            <template>
+                <random>
+                    <li>Have you read books recently?</li>
+                    <li>Which book is your favorite?</li>
+                </random>
+            </template>
+        </category>
+        
+        <category>
+            <pattern>WHO IS YOUR FAVORITE AUTHOR</pattern>
+            <template>
+                My favorite author is Jane Austin.
+            </template>
+        </category>
+    </topic>
+    
+    <category>
+        <pattern>ASK ME A QUESTION</pattern>
+        <template>
+            Do you like chatbots?
+            <think><set name="topic">CHATBOTS</set></think>
+        </template>
+    </category>
+    
+	<topic name="chatbots">
+	    <category>
+	        <pattern>_</pattern>
+	        <template>
+	            <think><set name="inp"><star/></set></think>
+	            <condition name="inp">
+	                <li value="YES">thank you, i like you too <think><set name="topic"></set></think></li>
+	                <li value="NO">aw, that's a shame <think><set name="topic"></set></think></li>
+	                <li>Please type yes or no</li>
+	            </condition>
+	        </template>
+	    </category>
+	</topic>
+	
+	
+	
+	<!--learn&eval-->
+	<!--<category>-->
+	<!--    <pattern>* IS *</pattern>-->
+	<!--    <template>-->
+	<!--        i've remembered that.-->
+	<!--        <learn>-->
+	<!--            <category>-->
+	<!--                <pattern>WHAT IS A CAT</pattern>-->
+	<!--                <template>-->
+	<!--                    <eval>A cat is <star index="2"/></eval>-->
+	<!--                </template>-->
+ <!--               </category>-->
+	<!--        </learn>-->
+	<!--    </template>-->
+ <!--   </category>-->
+	
+	<!--sets-->
+	
+	<category>
+	    <pattern>MY FAVORITE COLOR IS <set>colors</set></pattern>
+	    <template><formal>nice choice! I love <star/> too.</formal></template>
+    </category>
+    
+    <category>
+	    <pattern>MY FAVORITE COLOR IS *</pattern>
+	    <template><formal>i don't know about that color</formal></template>
+    </category>
+    
+    <category>
+        <pattern>#  <set>size</set> #</pattern>
+        <template>what toppings do you want?</template>
+    </category>
+    
+    <category>
+        <pattern>#  <set>toppings</set> #</pattern>
+        <template>
+            what size do you want?
+        </template>
+    </category>
+    
+	<category>
+        <pattern>I WANT A PIZZA</pattern>
+        <template>what size?</template>
+    </category>
+    
+    
+    <category>
+        <pattern>NAME SOMETHING THAT IS RED</pattern>
+        <template>How about <map name="objects">RED</map> </template>
+    </category>
+
+    <!--零个或多个:使用#或者^   #的优先级最高
+    这两个与_  *类似，只不过后面二者代表一个或多个 
+    前面二者代表零个或多个
+    
+    但是如果在pattern的第一个位置写了$那么优先级则失去效用，
+    
+    -->
+    <category>
+        <pattern>* FRANCE *</pattern>
+        <template>Oh! That is in Europe!</template>
+    </category>
+    
+    
+    <!--button-->
+    <category>
+        <pattern>ASK ME A QUESTION</pattern>
+        <template>
+            Do you like chatbots?
+            <reply>
+                <text>
+                    Yes!
+                </text>
+                <postback>
+                    CHOOSEYES
+                </postback>
+            </reply>
+            
+            <reply>
+                <text>
+                    No!
+                </text>
+                <postback>
+                    CHOOSENo
+                </postback>
+            </reply>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CHOOSEYES</pattern>
+        <template>aw! thanks! i like you 2.</template>
+    </category>
+    <category>
+        <pattern>CHOOSENO</pattern>
+        <template>that's a shame</template>
+    </category>
+	
+	
+	<category>
+	    <pattern>TEST</pattern>
+	    <template>
+	        please pick an option.
+	        <reply>
+	            <text>
+	                book a ticket
+	            </text>
+	            <postback>
+	                BOOKATICKET
+	            </postback>
+	        </reply>
+	    </template>
+    </category>
+    
+    <category>
+        <pattern>BOOKATICKET</pattern>
+        <template>ticket processing....</template>
+    </category>
+    
+    <category>
+        <pattern>HUMAN</pattern>
+        <template>Please wait for 2 minutes</template>
+    </category>
+	
+	<category>
+	    <pattern>HI</pattern>
+	    <template>
+	        What can i do for you?
+	       <button>
+	           <text>book a ticket</text>
+	           <postback>BOOKATICKET</postback>
+           </button>
+           <button>
+               <text>transfer to human assistant</text>
+               <postback>HUMAN</postback>
+           </button>
+	    </template>
+    </category>
+	
+	
+	<category>
+	    <pattern>i want some help</pattern>
+	    <template>
+	        What can i do for you?
+	       <button>
+	           <text>book a ticket</text>
+	           <postback>BOOKATICKET</postback>
+           </button>
+           <button>
+               <text>visit our website</text>
+               <url>https://www.google.com</url>
+           </button>
+	    </template>
+    </category>
+	
+	<category>
+	    <pattern>TELL ME ABOUT GOOGLE</pattern>
+	    <template>
+	        <link>
+	            <text>Open Google😏</text>
+	            <url>https://google.com</url>
+            </link>
+	    </template>
+    </category>
+	
+	<!--card-->
+	<category>
+	    <pattern>*</pattern>
+	    <template>
+	        <card>
+	            <image></image>
+	            <title></title>
+	            <subtitle></subtitle>
+	            <button>
+	                <text></text>
+	                <postback></postback>
+                </button>
+            </card>
+	    </template>
+    </category>
+    
+    <category>
+        <pattern>TEST1</pattern>
+        <template>
+            this is line 1<break/>
+            this is line 2<break/>
+            this is line 3
+        </template>
+    </category>
+	
+	<category>
+        <pattern>TEST2</pattern>
+        <template>
+            this is line 1<split/>
+            this is line 2<split/>
+            this is line 3
+        </template>
+    </category>
+	
+	<category>
+        <pattern>TEST3</pattern>
+        <template>
+            this is line 1<delay>2</delay>
+            this is line 2<delay>2</delay>
+            this is line 3
+        </template>
+    </category>
+    
+    <!--list-->
+    <category>
+        <pattern>
+            hello
+        </pattern>
+        <template>
+            welcome to this tutorial. What do you want to learn?
+            <ul>
+                <li><link><text>text1</text><url>https://google.com</url></link></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </template>
+    </category>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</aiml>
